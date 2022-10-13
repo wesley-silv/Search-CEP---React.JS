@@ -1,8 +1,12 @@
 import { FiSearch } from 'react-icons/fi'
+
 import './Components/style.css'
+
 import { useState } from 'react'
 
 import api from './services/api'
+
+
 function App() {
   const [input, setInput] = useState('')
   const [cep, setCep] = useState({})
