@@ -1,21 +1,20 @@
-import { FiSearch } from 'react-icons/fi'
-
 import './Components/style.css'
-
-import { useState } from 'react'
-
 import api from './services/api'
 
+import { FiSearch } from 'react-icons/fi'
+import { useState } from 'react'
 
-function App() {
+
+
+const App = () => {
   const [input, setInput] = useState('')
   const [cep, setCep] = useState({})
 
   async function handleSearch() {
     // 38180030/json/
 
-    if (input === '') {
-      alert('Preencha o campo com o cep desejado')
+    if (input === "") {
+      alert('Preencha o campo com o CEP desejado!')
       return
     }
     try {
@@ -31,19 +30,27 @@ function App() {
   return (
     <div className="container">
       <h1 className="title">Buscador CEP</h1>
+      <article className='description'>
+        {/* Esse página web tem por finalidade buscar o cep com base na numeração inserida  */}
+      </article>
       <div className="containerInput">
         <input
           type="text"
-          placeholder="Digite seu cep..."
+          placeholder="Pesquise pelo CEP:"
           value={input}
           onChange={e => setInput(e.target.value)}
+          autoFocus
         ></input>
         <button className="buttonSearch" onClick={handleSearch}>
-          <FiSearch size={25} color="#fff" />
+          <FiSearch />
         </button>
       </div>
+
       {Object.keys(cep).length > 0 && (
         <main className="main">
+          <p className='main-text'>
+            Este é o CEP que corresponde à descrição 
+          </p>
           <h2>CEP:{cep.cep} </h2>
           <span>{cep.logradouro} </span>
           <span>Complemento:{cep.complemento} </span>
